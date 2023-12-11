@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script>
+        var itemscost = [];
+        function fun1() {
+            var itemcost = parseFloat(document.getElementById('id1').value)
+            //itemscost.unshift(itemscost)
+            itemscost.push(itemcost)
+            showitemscost()
+            document.getElementById('id1').value = "";
+        }
+        function fun2() {
+            itemscost.pop()
+            showitemscost()
+        }
+        function showitemscost() {
+            var str = ''
+            for (var i = 0; i < itemscost.length; i++) {
+                str = str + '<li>' + itemscost[i] + '</li>'
+            }
+            document.getElementById('ul1').innerHTML = str
+        }
+        function addition() {
+            var total = itemscost.reduce(function (acc, val) {
+                return acc + val;
+            }, 0);
+            (document.getElementById('id2').value) = total;
+        }
+        function discount() {
+            //  total with 5% discount
+            var total = itemscost.reduce(function (acc, val) {
+                return acc + val;
+            }, 0);
+            var discount = total - (total * 0.05);
+            (document.getElementById('id3').value) = discount;
+        }
+        function gst() {
+            // total with 18% GST
+            var total = itemscost.reduce(function (acc, val) {
+                return acc + val;
+            }, 0);
+            var gst = total + (total * 0.18);
+            (document.getElementById('id4').value) = gst;
+        }
+    </script>
+</head>
+
+<body>
+    <label for="id1">Enter Item Cost:</label>
+    <input type="text" id="id1">
+    <button onclick="fun1()">ADD</button>
+    <button onclick="fun2()">REMOVE</button>
+    <br><br>
+    <ul id="ul1">
+    </ul>
+    <button onclick="addition()">Total</button>&nbsp;&nbsp;
+    <button onclick="discount()"> total with 5% Discount </button>&nbsp;&nbsp;
+    <button onclick="gst()"> total with 18% GST </button>
+    <br>
+    <br>
+    <style>
+        #id2 {
+            width: 35px;
+        }
+
+        #id3 {
+            width: 140px;
+        }
+
+        #id4 {
+            width: 122px;
+        }
+    </style>
+    <input type="text" id="id2">&nbsp;&nbsp;
+    <input type="text" id="id3">&nbsp;&nbsp;
+    <input type="text" id="id4">
+</body>
+
+</html>
